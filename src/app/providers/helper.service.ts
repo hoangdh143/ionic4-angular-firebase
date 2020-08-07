@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import {Platform} from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HelperService {
 
-  constructor() { }
+  constructor(private platform: Platform) { }
 
   prepareValidationMessage(form, validationMessage, formFields) {
     // tslint:disable-next-line:forin
@@ -21,5 +22,9 @@ export class HelperService {
       }
     }
     return formFields;
+  }
+
+  isNativePlatform() {
+    return this.platform.is('cordova') || this.platform.is('capacitor');
   }
 }
